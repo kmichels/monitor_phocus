@@ -301,9 +301,12 @@ class PhocusMonitor:
 
         # Get GPU core count from ioreg (separate try block - don't fail if this fails)
         try:
+            # Use encoding='utf-8' with errors='replace' because ioreg can output
+            # non-UTF-8 bytes (e.g., device names with special characters)
             gpu_result = subprocess.run(
                 ['ioreg', '-l'],
-                capture_output=True, text=True, timeout=SYSTEM_PROFILER_TIMEOUT
+                capture_output=True, timeout=SYSTEM_PROFILER_TIMEOUT,
+                encoding='utf-8', errors='replace'
             )
 
             # Look for gpu-core-count in ioreg output
@@ -318,6 +321,9 @@ class PhocusMonitor:
             print("Warning: ioreg timed out (GPU core count unavailable)")
         except subprocess.SubprocessError as e:
             print(f"Warning: Could not get GPU core count: {e}")
+        except UnicodeDecodeError:
+            # Shouldn't happen with errors='replace', but just in case
+            pass
 
         return info
     
