@@ -145,16 +145,24 @@ If you followed the installation steps above, you're ready to go.
 
 4. **The script will start monitoring.** You'll see output like:
    ```
-   ══════════════════════════════════════════════════════════════════
-   Phocus Resource Monitor v2.4
-   ══════════════════════════════════════════════════════════════════
-   System: Apple M4 Pro • 14-core CPU (10P + 4E) • 20-core GPU • 16-core Neural Engine • 64 GB RAM
-   Output: phocus_monitor_20241210_143052
-   Interval: 2.0 seconds
-   ══════════════════════════════════════════════════════════════════
-   
-   Monitoring Phocus (PID: 12345)...
-   Press Enter to add an annotation, Ctrl+C to stop.
+   ╔══════════════════════════════════════════════╗
+   ║   Phocus Resource Monitor v2.5              ║
+   ╚══════════════════════════════════════════════╝
+
+     System: Apple M4 Pro
+       CPU: 14 cores (10P + 4E)
+       GPU: 20 cores
+       ANE: 16-core Neural Engine
+       RAM: 64 GB
+
+     Phocus: v4.0.1
+
+     Interval: 2.0s
+     Output: phocus_monitor_20241210_143052.*
+
+     Controls:
+       Press Enter to add an annotation
+       Press Ctrl+C to stop and generate graph
    ```
 
 5. **Add annotations** by pressing Enter and typing what you're about to do:
@@ -181,7 +189,8 @@ sudo python3 monitor_phocus.py [options]
 |--------|---------|-------------|
 | `--duration SECONDS` | unlimited | Stop automatically after this many seconds |
 | `--interval SECONDS` | 2.0 | How often to sample (lower = more detail, larger files) |
-| `--output FILENAME` | auto-generated | Base name for output files (without extension) |
+| `--output PATH` | auto-generated | Output path: directory or full path (see examples) |
+| `--version` | — | Show version and exit |
 
 **Examples:**
 
@@ -192,9 +201,17 @@ sudo python3 monitor_phocus.py --duration 300
 # Sample every half-second for detailed analysis
 sudo python3 monitor_phocus.py --interval 0.5
 
-# Specify output filename
+# Specify output filename (saves as hnnr_test_run1.png and .csv)
 sudo python3 monitor_phocus.py --output hnnr_test_run1
+
+# Specify output directory (uses default timestamped name in that directory)
+sudo python3 monitor_phocus.py --output ~/Documents/phocus-tests/
+
+# Full path with filename
+sudo python3 monitor_phocus.py --output ~/Documents/phocus-tests/my_test
 ```
+
+**Note:** If you specify a directory that doesn't exist, the script will ask if you want to create it.
 
 ---
 

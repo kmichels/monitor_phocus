@@ -4,9 +4,9 @@
 
 This is a Python-based resource monitoring tool for Hasselblad Phocus 4.x running on Apple Silicon Macs. It was developed to understand and document how Phocus utilizes system resources, particularly to confirm whether features like HNNR (Hasselblad Neural Network Noise Reduction) actually use Apple's Neural Engine.
 
-**Owner:** Konrad (tonalphoto.com)  
-**Purpose:** Technical documentation for Hasselblad users; blog content; community resource  
-**Current Version:** 2.4  
+**Owner:** Konrad (tonalphoto.com)
+**Purpose:** Technical documentation for Hasselblad users; blog content; community resource
+**Current Version:** 2.5  
 
 ## What the Tool Does
 
@@ -71,6 +71,7 @@ No other dependencies. Intentionally kept simple for easy installation.
 - **v2.2** — Fixed ANE monitoring (removed sampler filter)
 - **v2.3** — Added system info detection and display
 - **v2.4** — Clarified metric labels (Phocus-specific vs system-wide)
+- **v2.5** — Error handling, input validation, Phocus version auto-detection, improved --output path handling, graceful Phocus exit handling, better comments
 
 ## Planned Enhancements
 
