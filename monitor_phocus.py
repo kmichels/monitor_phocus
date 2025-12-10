@@ -78,14 +78,22 @@ PHOCUS_APP_PATH = "/Applications/Phocus.app"
 try:
     import psutil
 except ImportError:
-    print("Error: psutil not installed. Run: pip install psutil")
+    print("Error: psutil not installed.")
+    print("Set up the virtual environment first:")
+    print("  python3 -m venv .venv")
+    print("  .venv/bin/pip install -r requirements.txt")
+    print("Then run with: sudo .venv/bin/python3 monitor_phocus.py")
     sys.exit(1)
 
 try:
     import matplotlib.pyplot as plt
     import matplotlib.gridspec as gridspec
 except ImportError:
-    print("Error: matplotlib not installed. Run: pip install matplotlib")
+    print("Error: matplotlib not installed.")
+    print("Set up the virtual environment first:")
+    print("  python3 -m venv .venv")
+    print("  .venv/bin/pip install -r requirements.txt")
+    print("Then run with: sudo .venv/bin/python3 monitor_phocus.py")
     sys.exit(1)
 
 
