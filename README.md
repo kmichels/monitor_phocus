@@ -237,6 +237,28 @@ python3 -m venv .venv
 
 ---
 
+## Uninstalling
+
+This tool doesn't install anything system-wide — everything is contained in the project folder. To completely remove it:
+
+```bash
+# Delete the entire project folder (includes venv and all dependencies)
+rm -rf ~/Downloads/monitor_phocus
+```
+
+That's it. The virtual environment (`.venv/`) contains all the Python packages, so deleting the folder removes everything.
+
+If you cloned with git and want to keep your output files:
+```bash
+# Keep only your CSV and PNG files
+cd ~/Downloads/monitor_phocus
+cp *.csv *.png ~/Desktop/  # or wherever you want them
+cd ..
+rm -rf monitor_phocus
+```
+
+---
+
 ## Contributing
 
 Found a bug? Have an idea? Open an issue or PR on GitHub.
