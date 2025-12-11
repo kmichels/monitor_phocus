@@ -106,9 +106,9 @@ If you followed the installation steps above, you're ready to go.
 
 4. **The script will start monitoring.** You'll see output like:
    ```
-   ╔══════════════════════════════════════════════╗
-   ║   Phocus Resource Monitor v2.5              ║
-   ╚══════════════════════════════════════════════╝
+   ╔════════════════════════════════════════════════╗
+   ║   Phocus Resource Monitor v2.5.1              ║
+   ╚════════════════════════════════════════════════╝
 
      System: Apple M4 Pro
        CPU: 14 cores (10P + 4E)

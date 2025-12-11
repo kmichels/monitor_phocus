@@ -30,6 +30,7 @@ Controls during recording:
   - Press Ctrl+C to stop and generate graph
 
 Version History:
+  v2.5.1: Fixed ioreg encoding issue, improved error messages for venv setup
   v2.5: Added error handling, input validation, auto Phocus version detection,
         improved --output path handling, better comments
   v2.4: Clarified graph labels - Phocus-specific vs system-wide metrics
@@ -60,7 +61,7 @@ from pathlib import Path
 # Constants
 # =============================================================================
 
-VERSION = "2.5"
+VERSION = "2.5.1"
 DEFAULT_INTERVAL = 2.0          # Sampling interval in seconds
 DEFAULT_ANE_CORES = 16          # All Apple Silicon chips have 16-core ANE
 POWERMETRICS_TIMEOUT = 10       # Timeout for powermetrics calls (seconds)

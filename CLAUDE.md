@@ -6,7 +6,7 @@ This is a Python-based resource monitoring tool for Hasselblad Phocus 4.x runnin
 
 **Owner:** Konrad (tonalphoto.com)
 **Purpose:** Technical documentation for Hasselblad users; blog content; community resource
-**Current Version:** 2.5  
+**Current Version:** 2.5.1  
 
 ## What the Tool Does
 
@@ -72,6 +72,7 @@ No other dependencies. Intentionally kept simple for easy installation.
 - **v2.3** — Added system info detection and display
 - **v2.4** — Clarified metric labels (Phocus-specific vs system-wide)
 - **v2.5** — Error handling, input validation, Phocus version auto-detection, improved --output path handling, graceful Phocus exit handling, better comments
+- **v2.5.1** — Fixed ioreg encoding issue (non-UTF-8 bytes), improved error messages for venv setup, switched to venv-based installation
 
 ## Planned Enhancements
 
