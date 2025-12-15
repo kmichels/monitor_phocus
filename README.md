@@ -40,6 +40,13 @@ Before using the app, you need to set up the monitoring script:
    .venv/bin/pip install -r requirements.txt
    ```
 
+   **What these commands do:**
+   - `cd ~/Downloads/phocus-monitor` — navigates to the folder you downloaded
+   - `python3 -m venv .venv` — creates a "virtual environment," an isolated space for this project's Python packages that won't affect anything else on your system
+   - `.venv/bin/pip install -r requirements.txt` — installs two packages into the virtual environment:
+     - **psutil** — reads process information (memory, CPU usage) from macOS
+     - **matplotlib** — generates the graphs
+
 That's it! The app will find this installation automatically.
 
 ### Running the App
