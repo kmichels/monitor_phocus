@@ -275,6 +275,19 @@ rm -rf phocus-monitor
 
 ---
 
+## Share Your Results!
+
+We'd love to see what you discover! Post your monitoring graphs in our [GitHub Discussions](https://github.com/kmichels/monitor_phocus/discussions/categories/share-your-results).
+
+When sharing, include:
+- **Your graph** (drag and drop the PNG into the post)
+- **What you were doing** (browsing thumbnails, applying HNNR, exporting, etc.)
+- **Any issues** (did Phocus crash? freeze? behave unexpectedly?)
+
+Your data helps the community understand how Phocus performs across different Mac configurations and workflows.
+
+---
+
 ## Contributing
 
 Found a bug? Have an idea? Open an issue or PR on GitHub.
