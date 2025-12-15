@@ -15,6 +15,10 @@ This tool watches Phocus in the background and records:
 
 When you stop monitoring, it generates a publication-ready graph with all this data, plus a CSV file for further analysis.
 
+![Example graph showing HNNR processing](examples/hnnr_effect.png)
+
+*Example: Monitoring HNNR (Hasselblad Neural Network Noise Reduction) on an M4 Pro MacBook. Note the Neural Engine activity in the bottom panel — this confirms HNNR is using Apple's dedicated ML hardware.*
+
 ### Why "System-Wide" for Some Metrics?
 
 macOS doesn't expose per-application GPU or Neural Engine usage. Memory and CPU are definitely Phocus-specific, but GPU and ANE reflect your whole system. For best results, close other apps during testing.
