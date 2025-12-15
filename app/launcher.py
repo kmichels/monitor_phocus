@@ -158,18 +158,33 @@ def main():
 
     # Get duration (optional)
     duration_str = show_input_dialog(
-        "How long should monitoring run?\\n(Enter seconds, or leave blank for manual stop with Ctrl+C)",
+        "How long should monitoring run?\\n(Enter seconds, or leave blank for manual stop with Control+C)",
         ""
+    )
+
+    # Get sampling interval (optional)
+    interval_str = show_input_dialog(
+        "Sampling interval in seconds?\\n(Default is 2.0 — lower values give more detail but larger files)",
+        "2.0"
     )
 
     # Build paths
     venv_python = install_dir / ".venv" / "bin" / "python3"
     script_path = install_dir / "monitor_phocus.py"
 
-    # Build duration argument
+    # Build optional arguments
     duration_arg = ""
     if duration_str and duration_str.strip().isdigit():
         duration_arg = f" -d {duration_str.strip()}"
+
+    interval_arg = ""
+    if interval_str:
+        try:
+            interval = float(interval_str.strip())
+            if interval > 0:
+                interval_arg = f" -i {interval}"
+        except ValueError:
+            pass  # Use default if invalid
 
     # Show info
     show_alert(
@@ -182,7 +197,7 @@ def main():
     # Use 'activate' and 'set frontmost' to ensure window comes to foreground
     terminal_script = f'''
     tell application "Terminal"
-        do script "cd '{install_dir}' && sudo '{venv_python}' '{script_path}' -o '{output_dir}/'{duration_arg}; echo ''; echo 'Done! Press any key to close...'; read -n 1"
+        do script "cd '{install_dir}' && sudo '{venv_python}' '{script_path}' -o '{output_dir}/'{duration_arg}{interval_arg}; echo ''; echo 'Done! Press any key to close...'; read -n 1"
         activate
         set frontmost to true
     end tell
