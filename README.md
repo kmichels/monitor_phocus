@@ -1,10 +1,10 @@
 # Phocus Resource Monitor for Apple Silicon
 
-A Python tool that monitors Hasselblad Phocus 4.x resource usage on Apple Silicon Macs, generating annotated graphs showing memory, CPU, GPU, and Neural Engine activity.
+A tool that monitors Hasselblad Phocus 4.x resource usage on Apple Silicon Macs, generating annotated graphs showing memory, CPU, GPU, and Neural Engine activity.
 
 ## What This Tool Does
 
-When you run this script, it watches Phocus in the background and records:
+This tool watches Phocus in the background and records:
 
 - **Memory usage** (Phocus-specific) — How much RAM Phocus is consuming
 - **CPU usage** (Phocus-specific) — How hard Phocus is working your processor
@@ -21,88 +21,92 @@ macOS doesn't expose per-application GPU or Neural Engine usage. Memory and CPU 
 
 ---
 
-## Requirements
+## Option 1: Using the App (Recommended)
+
+The easiest way to run Phocus Monitor is with the launcher app, which provides a graphical interface.
+
+### First-Time Setup
+
+Before using the app, you need to set up the monitoring script:
+
+1. **Download this repository** (click the green "Code" button → "Download ZIP", then extract it, or use `git clone`)
+
+2. **Open Terminal** (press `Cmd + Space`, type "Terminal", press Enter)
+
+3. **Navigate to the folder and set up Python:**
+   ```bash
+   cd ~/Downloads/phocus-monitor
+   python3 -m venv .venv
+   .venv/bin/pip install -r requirements.txt
+   ```
+
+That's it! The app will find this installation automatically.
+
+### Running the App
+
+1. **Open Phocus** (the app monitors an already-running Phocus)
+
+2. **Double-click `Phocus Monitor.app`** (located in `app/dist/`)
+
+3. **On first run**, macOS will ask for permission to control Terminal. Click **Allow**:
+
+   ![Terminal permission dialog](images/terminal-permission-dialog.png)
+
+   This is required because the app launches a Terminal window to run the monitoring script with administrator privileges. The app does not access your documents or data — it only sends commands to Terminal.
+
+4. **Follow the prompts:**
+   - Choose where to save the output files
+   - Optionally enter a duration in seconds (or leave blank to stop manually)
+   - Click OK to start
+
+5. **Enter your Mac password** in the Terminal window that opens (required for reading GPU and Neural Engine metrics)
+
+6. **Add annotations** by pressing Enter in the Terminal and typing what you're about to do (e.g., "HNNR start - 3 images")
+
+7. **Press Ctrl+C** to stop monitoring and generate the graph
+
+---
+
+## Option 2: Using the Command Line
+
+For users comfortable with Terminal, you can run the script directly.
+
+### Requirements
 
 - **macOS** on Apple Silicon (M1, M2, M3, M4 series)
 - **Phocus 4.x** installed
-- **Python 3.9+** (we'll install this via Homebrew)
+- **Python 3.9+** (included on macOS)
 - **Administrator access** (the script needs `sudo` to read hardware metrics)
 
----
+### Installation
 
-## Installation
-
-If you're comfortable with Terminal and Python, skip to the [Quick Start](#quick-start). Otherwise, follow these step-by-step instructions.
-
-### Step 1: Open Terminal
-
-Terminal is a built-in macOS app that lets you type commands directly to your computer.
-
-1. Press `Cmd + Space` to open Spotlight
-2. Type `Terminal` and press Enter
-3. A window with a command prompt will appear
-
-You'll be typing commands into this window for the following steps.
-
-### Step 2: Download the Script
-
-**Option A: Clone the repository (if you have git):**
-```bash
-cd ~/Downloads
-git clone https://github.com/kmichels/monitor_phocus.git
-cd monitor_phocus
-```
-
-**Option B: Download directly:**
-1. Click the green "Code" button on GitHub
-2. Click "Download ZIP"
-3. Extract the ZIP file
-4. Open Terminal and navigate to the folder:
+1. **Open Terminal** and navigate to where you want to save the script:
    ```bash
-   cd ~/Downloads/monitor_phocus
+   cd ~/Downloads
    ```
 
-### Step 3: Set Up Python Environment
+2. **Clone the repository** (or download and extract the ZIP):
+   ```bash
+   git clone https://github.com/kmichels/phocus-monitor.git
+   cd phocus-monitor
+   ```
 
-Your Mac comes with Python 3, which is all we need. We'll create a "virtual environment" — an isolated space for this project's dependencies that won't affect anything else on your system.
+3. **Set up the Python environment:**
+   ```bash
+   python3 -m venv .venv
+   .venv/bin/pip install -r requirements.txt
+   ```
 
-**Create the virtual environment:**
-```bash
-python3 -m venv .venv
-```
-
-This creates a `.venv` folder containing a private copy of Python for this project.
-
-**Install the required packages:**
-```bash
-.venv/bin/pip install -r requirements.txt
-```
-
-This installs `psutil` (for reading process info) and `matplotlib` (for generating graphs) into the virtual environment.
-
-That's it! The setup is complete.
-
----
-
-## Quick Start
-
-If you followed the installation steps above, you're ready to go.
-
-### Running the Monitor
+### Running the Script
 
 1. **Open Phocus** (the script monitors an already-running Phocus)
 
-2. **Open Terminal** and navigate to where you saved the script:
-   ```bash
-   cd ~/Downloads/monitor_phocus
-   ```
-
-3. **Run the script with sudo:**
+2. **Run the script with sudo:**
    ```bash
    sudo .venv/bin/python3 monitor_phocus.py
    ```
 
-   Enter your Mac password when prompted. (You need `sudo` because reading GPU and Neural Engine data requires administrator privileges. We use the full path `.venv/bin/python3` because `sudo` doesn't inherit your shell environment.)
+3. **Enter your Mac password** when prompted. (You need `sudo` because reading GPU and Neural Engine data requires administrator privileges.)
 
 4. **The script will start monitoring.** You'll see output like:
    ```
@@ -138,9 +142,7 @@ If you followed the installation steps above, you're ready to go.
    - A PNG graph file (e.g., `phocus_monitor_20241210_143052.png`)
    - A CSV data file (e.g., `phocus_monitor_20241210_143052.csv`)
 
----
-
-## Command Line Options
+### Command Line Options
 
 ```bash
 sudo .venv/bin/python3 monitor_phocus.py [options]
@@ -196,34 +198,37 @@ The summary bar at the bottom shows averages and maximums for each metric.
 
 ### "Phocus is not running"
 
-Start Phocus before running the script. The monitor watches an already-running Phocus process.
+Start Phocus before running the script or app. The monitor watches an already-running Phocus process.
 
 ### "Permission denied" or no GPU/ANE data
 
-Make sure you're running with `sudo`:
-```bash
-sudo .venv/bin/python3 monitor_phocus.py
-```
+Make sure you're running with `sudo` (command line) or entering your password when prompted (app).
 
 ### "No module named psutil" or "No module named matplotlib"
 
 The virtual environment isn't set up or the packages aren't installed. Run:
 ```bash
+cd ~/Downloads/phocus-monitor
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 ```
 
-### "No such file or directory: .venv/bin/python3"
+### The app shows "Setup Required"
 
-You need to create the virtual environment first. Make sure you're in the `monitor_phocus` directory, then run:
-```bash
-python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-```
+The app couldn't find the phocus-monitor installation. Make sure you've:
+1. Downloaded/cloned the repository
+2. Created the virtual environment with `python3 -m venv .venv`
+3. Installed dependencies with `.venv/bin/pip install -r requirements.txt`
+
+The app looks in these locations:
+- `~/phocus-monitor`
+- `~/Downloads/phocus-monitor`
+- `~/Documents/phocus-monitor`
+- The folder containing the app
 
 ### The graph looks weird or has missing data
 
-- **GPU/ANE all zeros?** Make sure you're using `sudo`
+- **GPU/ANE all zeros?** Make sure you're using `sudo` or entering your password
 - **Memory seems too high?** Phocus caches images aggressively. This is normal — see our findings about memory accumulation during browsing.
 
 ---
@@ -243,18 +248,18 @@ This tool doesn't install anything system-wide — everything is contained in th
 
 ```bash
 # Delete the entire project folder (includes venv and all dependencies)
-rm -rf ~/Downloads/monitor_phocus
+rm -rf ~/Downloads/phocus-monitor
 ```
 
 That's it. The virtual environment (`.venv/`) contains all the Python packages, so deleting the folder removes everything.
 
-If you cloned with git and want to keep your output files:
+If you want to keep your output files:
 ```bash
 # Keep only your CSV and PNG files
-cd ~/Downloads/monitor_phocus
+cd ~/Downloads/phocus-monitor
 cp *.csv *.png ~/Desktop/  # or wherever you want them
 cd ..
-rm -rf monitor_phocus
+rm -rf phocus-monitor
 ```
 
 ---

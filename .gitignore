@@ -9,6 +9,10 @@ __pycache__/
 dist/
 build/
 
+# py2app build artifacts
+app/build/
+app/dist/
+
 # Virtual environments
 venv/
 .venv/
@@ -20,9 +24,9 @@ env/
 *.swp
 *.swo
 
-# Output files (keep examples/ but ignore generated files in root)
-*.csv
-*.png
+# Output files (ignore generated files in root, but keep images/)
+/*.csv
+/*.png
 
 # Claude Code
 .claude/
