@@ -68,6 +68,7 @@ That's it! The app will find this installation automatically.
 4. **Follow the prompts:**
    - Choose where to save the output files
    - Optionally enter a duration in seconds (or leave blank to stop manually)
+   - Set the sampling interval (default 2.0 seconds — lower values give more detail but larger files)
    - Click OK to start
 
 5. **Enter your Mac password** in the Terminal window that opens (required for reading GPU and Neural Engine metrics)
