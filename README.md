@@ -70,7 +70,7 @@ That's it! The app will find this installation automatically.
 
 6. **Add annotations** by pressing Enter in the Terminal and typing what you're about to do (e.g., "HNNR start - 3 images")
 
-7. **Press Ctrl+C** to stop monitoring and generate the graph
+7. **Stop monitoring** — If you set a duration, the script will stop automatically and generate the graph. Otherwise, press **Control+C** (not Command+C) in the Terminal window to stop and generate the graph.
 
 ---
 
@@ -145,7 +145,7 @@ For users comfortable with Terminal, you can run the script directly.
 
 6. **Perform your Phocus operations** — import images, apply HNNR, browse thumbnails, whatever you want to measure.
 
-7. **Press Ctrl+C to stop monitoring.** The script will generate:
+7. **Stop monitoring.** If you used `--duration`, the script stops automatically. Otherwise, press **Control+C** (not Command+C) to stop. Either way, the script will generate:
    - A PNG graph file (e.g., `phocus_monitor_20241210_143052.png`)
    - A CSV data file (e.g., `phocus_monitor_20241210_143052.csv`)
 
